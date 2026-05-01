@@ -40,7 +40,7 @@ public class CsvFileManager {
         try (StringWriter stringWriter = new StringWriter();
              SequenceWriter sequenceWriter = mapper.writer(schema).writeValues(stringWriter)) {
 
-            FileOutputStream fos = new FileOutputStream((csvFile.getName()));
+            FileOutputStream fos = new FileOutputStream((csvFile));
             sequenceWriter.writeAll(list);
             String csvString = stringWriter.toString();
             byte[] bytes = csvString.getBytes();
@@ -57,7 +57,7 @@ public class CsvFileManager {
         File csvFile = new File(fileName);
         ArrayList<Dragon> dragons = new ArrayList<> ();
 
-        try (Reader reader = new InputStreamReader(new FileInputStream(csvFile.getName()))){
+        try (Reader reader = new InputStreamReader(new FileInputStream(csvFile))){
             MappingIterator<Dragon> iterator = mapper.readerFor(Dragon.class)
                     .with(schema)
                     .readValues(reader);

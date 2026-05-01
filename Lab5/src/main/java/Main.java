@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
 
         CsvFileManager csvFileManager = new CsvFileManager();
-        CollectionManager collectionManager = new CollectionManager(csvFileManager, "data.csv");
+        CollectionManager collectionManager = new CollectionManager(csvFileManager, System.getenv("LAB5_PATH"));
         Scanner scanner = new Scanner(System.in);
         Console console = new Console();
 
