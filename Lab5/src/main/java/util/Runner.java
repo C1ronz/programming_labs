@@ -1,0 +1,74 @@
+package util;
+
+import exceptions.ScriptRecursionException;
+import managers.CommandManager;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Runner {
+
+    private boolean runningStatus;
+    private boolean scriptStatus = false;
+    private CommandManager commandManager;
+    private static List<String> scriptStack = new ArrayList<>();
+    private String filePath;
+
+    public Runner (String filePath){
+        this.filePath = filePath;
+    }
+
+    public String getFilePath() {return filePath;}
+    public void setFilePath(String filePath) {this.filePath = filePath;}
+
+    public void setCommandManager (CommandManager commandManager){
+        this.commandManager = commandManager;
+    }
+
+    public void runInteractive (){
+        runningStatus = true;
+        Console.println("Программа запущена в интерактивном режиме, введите help для просмотра команд");
+
+        while (runningStatus) {
+            String[] userCommand = Console.readCommand();
+            commandManager.launchCommand(userCommand);
+        }
+    }
+
+    public void stop (){
+        if (scriptStatus == false) {
+            runningStatus = false;
+            Console.println("Работа программы завершена");
+        }
+        else {
+            scriptStack.removeLast();
+        }
+    }
+
+    public void runScript (String filepath){
+
+        if (scriptStack.contains(filepath)) {
+            throw new ScriptRecursionException("Бесконечная рекурсия в скрипте");
+        }
+        else {
+            scriptStack.add(filepath);
+        }
+
+        try {
+            File file = new File(filepath);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+            String line;
+            while ((line = reader.readLine()) != null && scriptStack.getLast() == filepath) {
+                String[] userCommand = line.trim().split(" ");
+                commandManager.launchCommand(userCommand);
+            }
+            scriptStack.removeLast();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

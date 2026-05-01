@@ -1,13 +1,11 @@
 package util;
 
 import exceptions.ValidationException;
-import managers.Console;
 
-import java.util.function.Function;
 import java.util.function.Function;
 import java.util.function.Consumer;
 
-public class InputArguments {
+public class ConsoleDragonReader {
 
     public static <T> T getValidatedInput(String request, Function<String,T> parser, Consumer<T> validator){
         while (true){

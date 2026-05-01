@@ -2,7 +2,6 @@ package managers;
 
 import exceptions.ElementNotFound;
 import models.*;
-import util.CsvConverter;
 
 import java.time.ZonedDateTime;
 import java.util.*;
@@ -11,15 +10,13 @@ public class CollectionManager {
     private TreeMap <Long, Dragon> dragons = new TreeMap<>();
     private ZonedDateTime inizializeTime;
     private FileManager fileManager;
-    private final String filePath;
 
     private Long nextKey = 1L;
 
-    public CollectionManager (FileManager fileManager, String filePath){
+    public CollectionManager (FileManager fileManager){
 
         this.fileManager = fileManager;
         this.inizializeTime = ZonedDateTime.now();
-        this.filePath = filePath;
     }
 
     public void add (Long key, Dragon dragon) {
@@ -39,11 +36,11 @@ public class CollectionManager {
     }
 
 
-    public void save (){
+    public void saveTo(String filePath){
         fileManager.writeToFile(dragons,filePath);
     }
 
-    public void read (){
+    public void readFrom(String filePath){
          List<Dragon> dragonList = fileManager.readFromFile(filePath);
         for (Dragon dragon : dragonList){
             add(generateKey(),dragon);

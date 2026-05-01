@@ -1,7 +1,7 @@
 package commands;
 
 import managers.CollectionManager;
-import managers.Console;
+import util.Console;
 
 public class InfoCommand extends AbstractCommand {
 

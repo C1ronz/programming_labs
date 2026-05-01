@@ -1,7 +1,7 @@
 package commands;
 
 import managers.CommandManager;
-import managers.Console;
+import util.Console;
 
 import java.util.Map;
 
@@ -15,7 +15,7 @@ public class HelpCommand extends AbstractCommand {
 
     @Override
     public void executeInternal(String[] args){
-        Console.println("Доступные комманды");
+        Console.println("Доступные комманды:");
         Map<String, AbstractCommand> commands = commandManager.getCommands();
         for (Map.Entry<String, AbstractCommand> entry : commands.entrySet()){
             Console.println(entry.getKey() + ": " + entry.getValue().getDescription());

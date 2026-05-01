@@ -18,32 +18,32 @@ public class InteractiveDragonBuilder {
 
 
     public static Dragon buildDragon (){
-        long id = InputArguments.getValidatedInput("Введите id", s -> Long.parseLong(s), Validator::validateId);
-        String name = InputArguments.getValidatedInput("Введите имя дракона", Validator::validateDragonName);
+        long id = ConsoleDragonReader.getValidatedInput("Введите id", s -> Long.parseLong(s), Validator::validateId);
+        String name = ConsoleDragonReader.getValidatedInput("Введите имя дракона", Validator::validateDragonName);
         Coordinates coordinates = buildCoordinates();
-        long age = InputArguments.getValidatedInput("Введите возраст дракона", s -> Long.parseLong(s), Validator::validateAge);
-        boolean speaking = InputArguments.getValidatedInput("Может ли дракон говорить - да/нет", s -> InteractiveDragonBuilder.parseBoolean(s), Validator::validateSpeaking);
-        Color color = InputArguments.getValidatedInput("Введите цвет дракона из "+Color.getValues(), s -> Color.parseColor(s), Validator::validateColor);
-        DragonCharacter character = InputArguments.getValidatedInput("Введите характер дракона из "+DragonCharacter.getValues(), s -> DragonCharacter.parseCharacter(s), Validator::validateCharacter);
+        long age = ConsoleDragonReader.getValidatedInput("Введите возраст дракона", s -> Long.parseLong(s), Validator::validateAge);
+        boolean speaking = ConsoleDragonReader.getValidatedInput("Может ли дракон говорить - да/нет", s -> InteractiveDragonBuilder.parseBoolean(s), Validator::validateSpeaking);
+        Color color = ConsoleDragonReader.getValidatedInput("Введите цвет дракона из "+Color.getValues(), s -> Color.parseColor(s), Validator::validateColor);
+        DragonCharacter character = ConsoleDragonReader.getValidatedInput("Введите характер дракона из "+DragonCharacter.getValues(), s -> DragonCharacter.parseCharacter(s), Validator::validateCharacter);
         Person killer = buildPerson();
         return new Dragon(id, name, coordinates, ZonedDateTime.now(), age, speaking,color, character,killer);
     }
 
     public static Coordinates buildCoordinates (){
-        int x = InputArguments.getValidatedInput("Введите x", s -> Integer.parseInt(s), Validator::validateX);
-        Long y = InputArguments.getValidatedInput("Введите y", s -> Long.parseLong(s), Validator::validateY);
+        int x = ConsoleDragonReader.getValidatedInput("Введите x", s -> Integer.parseInt(s), Validator::validateX);
+        Long y = ConsoleDragonReader.getValidatedInput("Введите y", s -> Long.parseLong(s), Validator::validateY);
         return new Coordinates(x,y);
     }
 
     public static Person buildPerson (){
-        String name = InputArguments.getValidatedInput("Введите имя убийцы или enter если убийцы нет", Validator::validatePersonName);
+        String name = ConsoleDragonReader.getValidatedInput("Введите имя убийцы или enter если убийцы нет", Validator::validatePersonName);
         if (name == null || name.isEmpty()){
             return null;
         }
-        Long height = InputArguments.getValidatedInput("Введите рост "+ name,s -> Long.parseLong(s), Validator::validateHeight);
-        Color eyeColor = InputArguments.getValidatedInput("Введите цвет глаз "+ name + " из " + Color.getValues(), s-> Color.parseColor(s), Validator::validateEyeHColor);
-        Color hairColor = InputArguments.getValidatedInput("Введите цвет волос "+ name + " из " + Color.getValues(), s-> Color.parseColor(s), Validator::validateHairColor);
-        Country nationality = InputArguments.getValidatedInput("Введите страну рождения "+ name + " из " + Country.getValues(), s-> Country.parseCountry(s), Validator::validateNationality);
+        Long height = ConsoleDragonReader.getValidatedInput("Введите рост "+ name, s -> Long.parseLong(s), Validator::validateHeight);
+        Color eyeColor = ConsoleDragonReader.getValidatedInput("Введите цвет глаз "+ name + " из " + Color.getValues(), s-> Color.parseColor(s), Validator::validateEyeHColor);
+        Color hairColor = ConsoleDragonReader.getValidatedInput("Введите цвет волос "+ name + " из " + Color.getValues(), s-> Color.parseColor(s), Validator::validateHairColor);
+        Country nationality = ConsoleDragonReader.getValidatedInput("Введите страну рождения "+ name + " из " + Country.getValues(), s-> Country.parseCountry(s), Validator::validateNationality);
         return new Person(name, height, eyeColor,hairColor,nationality);
     }
 

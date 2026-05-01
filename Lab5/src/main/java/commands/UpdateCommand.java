@@ -3,7 +3,7 @@ package commands;
 import exceptions.ElementNotFound;
 import managers.CollectionManager;
 import managers.CommandManager;
-import managers.Console;
+import util.Console;
 import models.Dragon;
 import util.InteractiveDragonBuilder;
 
@@ -20,26 +20,17 @@ public class UpdateCommand extends AbstractCommand {
 
     @Override
     public void executeInternal(String[] args) {
-        if (args.length == 1){
-            try {
-                long id = Long.parseLong(args[0]);
-                if (Dragon.isIdUnique(id)) Console.printErr("Дракона с данным id нет в коллекции. Повторите попытку:");
-                else {
-                    Dragon dragon = InteractiveDragonBuilder.buildDragon();
-                    collectionManager.updateByKey(collectionManager.getKeyById(id), dragon);
-                    Console.println("Коллекция успешно добавлена");
-                }
-            }
-            catch (NumberFormatException e){
-                Console.printErr("Команда update принимает в качестве аргумента 1 число. Повторите попытку: ");
-            }
-            catch (ElementNotFound e){
-                Console.printErr("Не удалось найти элемент. Повторите попытку: ");
-            }
+        try {
+            long id = Long.parseLong(args[0]);
+            Dragon dragon = InteractiveDragonBuilder.buildDragon();
+            collectionManager.updateByKey(collectionManager.getKeyById(id), dragon);
+            Console.println("Коллекция успешно добавлена");
         }
-        else {
-            Console.printErr("Команда update принимает в качестве аргумента 1 число. Повторите попытку: ");
+        catch (NumberFormatException e){
+            Console.printErr("Команда update принимает в качестве аргумента одно число. Повторите попытку.");
+        }
+        catch (ElementNotFound e){
+            Console.printErr("Не удалось найти элемент. Повторите попытку.  Доступные id:" + Dragon.getUsedDragonId());
         }
     }
-
 }

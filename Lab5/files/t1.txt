@@ -1,0 +1,2 @@
+insert 6
+execute_script files/t1.txt

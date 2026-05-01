@@ -25,7 +25,7 @@ public class Coordinates {
 
     @Override
     public String toString (){
-        return "x:" + x + ", y:" + y == null ? " " : y.toString();
+        return String.format("x:%d, y:%s", x, y == null ? " " : y.toString());
     }
 
 }

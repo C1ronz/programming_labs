@@ -2,23 +2,26 @@ import commands.*;
 import exceptions.ValidationException;
 import managers.CollectionManager;
 import managers.CommandManager;
-import managers.Console;
+import util.Console;
 import managers.FileManager;
-import models.*;
+import util.Runner;
 
-import java.time.ZonedDateTime;
 import java.util.Scanner;
 
 
 public class Main {
     public static void main(String[] args) {
 
+        String filePath = System.getenv("LAB5_PATH");
+
         FileManager fileManager = new FileManager();
-        CollectionManager collectionManager = new CollectionManager(fileManager, System.getenv("LAB5_PATH"));
+        CollectionManager collectionManager = new CollectionManager(fileManager);
         Scanner scanner = new Scanner(System.in);
         Console console = new Console();
 
-        CommandManager commandManager = new CommandManager(collectionManager, console);
+        Runner runner = new Runner(filePath);
+
+        CommandManager commandManager = new CommandManager();
 
         commandManager.addCommands(
                 new HelpCommand(commandManager),
@@ -27,13 +30,16 @@ public class Main {
                 new InsertCommand(collectionManager,commandManager),
                 new RemoveKeyCommand(collectionManager),
                 new ClearCommand(collectionManager),
-                new SaveCommand(collectionManager),
-                new ExitCommand(commandManager),
-                new HistoryCommand(commandManager)
+                new SaveCommand(collectionManager,runner),
+                new ExitCommand(runner),
+                new HistoryCommand(commandManager),
+                new ExecuteScriptCommand(runner)
         );
 
+        runner.setCommandManager(commandManager);
+
         try {
-            collectionManager.read();
+            collectionManager.readFrom(filePath);
         }
         catch (ValidationException e){
             Console.printErr("Ошибка при чтении файла. " + e);
@@ -47,7 +53,7 @@ public class Main {
 //
 //        collectionManager.add(5L, dragon);
 
-        commandManager.run();
+        runner.runInteractive();
 
     }
 }

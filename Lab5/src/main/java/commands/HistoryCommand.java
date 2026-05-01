@@ -1,7 +1,7 @@
 package commands;
 
 import managers.CommandManager;
-import managers.Console;
+import util.Console;
 
 import java.util.Queue;
 

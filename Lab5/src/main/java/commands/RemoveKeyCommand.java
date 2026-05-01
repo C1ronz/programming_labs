@@ -2,7 +2,8 @@ package commands;
 
 import exceptions.ElementNotFound;
 import managers.CollectionManager;
-import managers.Console;
+import models.Dragon;
+import util.Console;
 
 public class RemoveKeyCommand extends AbstractCommand {
 
@@ -10,32 +11,26 @@ public class RemoveKeyCommand extends AbstractCommand {
 
 
     public RemoveKeyCommand(CollectionManager collectionManager){
-        super("remove", "удалить элемент по заданному ключю (формат: команда ключ)", 1);
+        super("remove_key", "удалить элемент по заданному ключю (формат: команда ключ)", 1);
         this.collectionManager = collectionManager;
 
     }
 
     @Override
     public void executeInternal(String[] args) {
-        if (args.length == 1){
-            try {
-                Long key = Long.valueOf(args[0]);
-                if (collectionManager.isKeyUnique(key)) Console.printErr("Элемента с данным ключом нет в коллекции. Повторите попытку:");
-                else {
-                    collectionManager.removeByKey(collectionManager.getKeyById(key));
-                    Console.println("Элемент успешно удалён");
-                }
-            }
-            catch (NumberFormatException e){
-                Console.printErr("Команда remove принимает в качестве аргумента 1 число. Повторите попытку: ");
-            }
-            catch (ElementNotFound e){
-                Console.printErr("Не удалось найти элемент. Повторите попытку: ");
+        try {
+            Long key = Long.valueOf(args[0]);
+            if (collectionManager.isKeyUnique(key)) Console.printErr("Элемента с данным ключом нет в коллекции. Повторите попытку:");
+            else {
+                collectionManager.removeByKey(key);
+                Console.println("Элемент успешно удалён");
             }
         }
-        else {
-            Console.printErr("Команда remove принимает в качестве аргумента 1 число. Повторите попытку: ");
+        catch (NumberFormatException e){
+            Console.printErr("Команда remove принимает в качестве аргумента одно число. Повторите попытку.");
+        }
+        catch (ElementNotFound e){
+            Console.printErr("Не удалось найти элемент. Повторите попытку.  Доступные ключи:" + collectionManager.getDragons().keySet());
         }
     }
-
 }
