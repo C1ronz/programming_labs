@@ -1,6 +1,5 @@
 package commands;
 
-import exceptions.WrongCommandPattern;
 import managers.CollectionManager;
 
 /**

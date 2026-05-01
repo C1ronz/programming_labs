@@ -2,7 +2,6 @@ package commands;
 
 import exceptions.ElementNotFound;
 import managers.CollectionManager;
-import managers.CommandManager;
 import util.Console;
 import models.Dragon;
 import util.InteractiveDragonBuilder;
@@ -14,12 +13,10 @@ import util.InteractiveDragonBuilder;
 public class UpdateCommand extends AbstractCommand {
 
     CollectionManager collectionManager;
-    CommandManager commandManager;
 
-    public UpdateCommand(CollectionManager collectionManager, CommandManager commandManager){
+    public UpdateCommand(CollectionManager collectionManager){
         super("update", "обновить элемент по заданному id (формат: команда id)", 1);
         this.collectionManager = collectionManager;
-        this.commandManager = commandManager;
     }
 
     /**

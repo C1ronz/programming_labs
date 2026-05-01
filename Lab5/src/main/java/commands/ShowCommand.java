@@ -1,6 +1,7 @@
 package commands;
 
 import managers.CollectionManager;
+import models.Dragon;
 import util.Console;
 
 import java.util.Map;
@@ -23,7 +24,7 @@ public class ShowCommand extends AbstractCommand {
      */
     @Override
     public void executeInternal(String[] args){
-        for (Map.Entry pair : collectionManager.getDragons().entrySet()){
+        for (Map.Entry<Long, Dragon> pair : collectionManager.getDragons().entrySet()){
             Console.println("key:" + pair.getKey() + ", " + pair.getValue().toString());
         }
     }

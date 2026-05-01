@@ -16,7 +16,7 @@ public final class Validator {
      *
      * @param id проверяемый идентификатор
      * @return валидный идентификатор (без изменений)
-     * @throws ValidationException если id <= 0 или id не уникален
+     * @throws ValidationException если id &lt;= 0 или id не уникален
      */
     public static long validateId(long id) {
         if (id <= 0) throw new ValidationException("id должен быть больше 0");
@@ -54,7 +54,7 @@ public final class Validator {
      *
      * @param x проверяемая координата
      * @return валидная координата X
-     * @throws ValidationException если x <= -600
+     * @throws ValidationException если x &lt;= -600
      */
     public static int validateX(int x) {
         if (x <= -600) throw new ValidationException("x должен быть больше -600");
@@ -79,7 +79,7 @@ public final class Validator {
      *
      * @param age проверяемый возраст
      * @return валидный возраст
-     * @throws ValidationException если age <= 0
+     * @throws ValidationException если age &lt;= 0
      */
     public static long validateAge(long age) {
         if (age <= 0) throw new ValidationException("age должен быть больше 0");
@@ -151,7 +151,7 @@ public final class Validator {
      *
      * @param height проверяемый рост
      * @return валидный рост или null, если рост не указан
-     * @throws ValidationException если height <= 0
+     * @throws ValidationException если height &lt;= 0
      */
     public static Long validateHeight(Long height) {
         if (height == null) return null;

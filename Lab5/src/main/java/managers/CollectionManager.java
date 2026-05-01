@@ -85,7 +85,7 @@ public class CollectionManager {
 
     /**
      * Находит ключ элемента коллекции по id.
-     * @trows ElementNotFound
+     * @throws ElementNotFound не найден элемент в коллекции.
      */
     public Long getKeyById (long id){
         for (Map.Entry<Long,Dragon> entry : dragons.entrySet()){

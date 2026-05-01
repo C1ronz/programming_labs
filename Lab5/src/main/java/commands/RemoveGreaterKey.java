@@ -1,10 +1,8 @@
 package commands;
 
 import managers.CollectionManager;
-import managers.CommandManager;
 import util.Console;
 import models.Dragon;
-import util.InteractiveDragonBuilder;
 
 import java.util.Map;
 import java.util.TreeMap;

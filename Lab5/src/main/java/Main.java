@@ -27,6 +27,7 @@ public class Main {
                 new InfoCommand(collectionManager),
                 new ShowCommand(collectionManager),
                 new InsertCommand(collectionManager),
+                new UpdateCommand(collectionManager),
                 new RemoveKeyCommand(collectionManager),
                 new ClearCommand(collectionManager),
                 new SaveCommand(collectionManager,runner),

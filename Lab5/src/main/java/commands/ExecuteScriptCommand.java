@@ -1,7 +1,6 @@
 package commands;
 
 import exceptions.ScriptRecursionException;
-import exceptions.WrongCommandPattern;
 import util.Console;
 import util.Runner;
 

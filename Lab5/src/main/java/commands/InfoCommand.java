@@ -1,6 +1,5 @@
 package commands;
 
-import exceptions.ScriptRecursionException;
 import managers.CollectionManager;
 import util.Console;
 

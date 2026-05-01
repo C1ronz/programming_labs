@@ -2,7 +2,6 @@ package commands;
 
 import exceptions.ElementNotFound;
 import managers.CollectionManager;
-import models.Dragon;
 import util.Console;
 
 /**

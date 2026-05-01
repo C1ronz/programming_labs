@@ -1,13 +1,9 @@
 package commands;
 
-import exceptions.ValidationException;
 import managers.CollectionManager;
-import managers.CommandManager;
-import models.DragonCharacter;
 import models.Person;
 import util.Console;
 import models.Dragon;
-
 import java.util.*;
 
 /**

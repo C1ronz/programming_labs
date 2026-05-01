@@ -31,17 +31,15 @@ public abstract class AbstractCommand {
 
     /**
      * Проверяет кол-во переданных аргументов и вызывает уникальнове выполнение для каждой команды.
-     * @throws WrongCommandPattern
+     * @throws WrongCommandPattern выбрасывает исключение при неверном кол-ве аргументов
      */
     public void execute(String[] args) throws WrongCommandPattern{
         if (args == null || args.length != numberOfArgs)
         {
-            throw new WrongCommandPattern(this.getName() + " принимает " + numberOfArgs + " аргументов, получено " + args.length);
+            throw new WrongCommandPattern(this.getName() + " принимает " + numberOfArgs + " аргументов, получено " + (args == null ? 0 : args.length));
         }
-
         executeInternal(args);
-
-    };
+    }
 
     /**
      * Уникальное выполнение команды.
