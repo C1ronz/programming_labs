@@ -41,6 +41,7 @@ public class Main {
 
 
         commandManager.run();
+        Console.println("hi test");
 
     }
 }
