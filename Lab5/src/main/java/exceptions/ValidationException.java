@@ -1,7 +1,8 @@
 package exceptions;
 
 /**
- * Исключение, выбрасываемое при ошибках валидации.
+ * Выбрасывается при ошибках валидации.
+ * @author C1ronz
  */
 public class ValidationException extends RuntimeException {
     public ValidationException(String message) {

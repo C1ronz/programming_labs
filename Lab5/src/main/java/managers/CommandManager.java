@@ -6,6 +6,10 @@ import util.Console;
 
 import java.util.*;
 
+/**
+ * Управляет командами.
+ * @author C1ronz
+ */
 public class CommandManager {
 
     private final int MAX_HISTORY_SIZE = 11;
@@ -13,17 +17,26 @@ public class CommandManager {
     private final Map<String, AbstractCommand> commands = new HashMap<>();
     private Queue<AbstractCommand> history = new LinkedList<>();
 
+
+    /**
+     * Добвляет команды.
+     */
     public void addCommands (AbstractCommand... commands){
         for (AbstractCommand command : commands){
             this.commands.put(command.getName(), command);
         }
     }
 
+    /**
+     * @return Словарь команд.
+     */
     public Map<String, AbstractCommand> getCommands (){
         return commands;
     }
 
-
+    /**
+     * Вызывает выполнение команды и передает ей аргументы.
+     */
     public void launchCommand (String[] line) {
         List<String> list = new ArrayList<>(Arrays.asList(line));
         try {
@@ -39,13 +52,18 @@ public class CommandManager {
         }
     }
 
+    /**
+     * Добвляет команду в историю.
+     */
     private void addCommandToHistory (AbstractCommand command){
         if (history.size() == MAX_HISTORY_SIZE) {
             history.poll();
         }
         history.add(command);
     }
-
+    /**
+     * @return История команд.
+     */
     public Queue<AbstractCommand> getHistory (){
         return history;
     }

@@ -5,6 +5,10 @@ import managers.CollectionManager;
 import models.Dragon;
 import util.Console;
 
+/**
+ * Команда "remove_key". Удалёет элемент коллекции по ключю.
+ * @author C1ronz
+ */
 public class RemoveKeyCommand extends AbstractCommand {
 
     CollectionManager collectionManager;
@@ -16,6 +20,9 @@ public class RemoveKeyCommand extends AbstractCommand {
 
     }
 
+    /**
+     * Выполняет команду.
+     */
     @Override
     public void executeInternal(String[] args) {
         try {

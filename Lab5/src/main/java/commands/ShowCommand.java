@@ -5,6 +5,10 @@ import util.Console;
 
 import java.util.Map;
 
+/**
+ * Команда "show". Выводит все элементы коллекции в строковом представлении.
+ * @author C1ronz
+ */
 public class ShowCommand extends AbstractCommand {
 
     CollectionManager collectionManager;
@@ -14,6 +18,9 @@ public class ShowCommand extends AbstractCommand {
         this.collectionManager = collectionManager;
     }
 
+    /**
+     * Выполняет команду.
+     */
     @Override
     public void executeInternal(String[] args){
         for (Map.Entry pair : collectionManager.getDragons().entrySet()){

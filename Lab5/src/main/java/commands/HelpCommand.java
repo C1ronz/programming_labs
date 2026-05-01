@@ -1,10 +1,15 @@
 package commands;
 
+import exceptions.ScriptRecursionException;
 import managers.CommandManager;
 import util.Console;
 
 import java.util.Map;
 
+/**
+ * Команда "help". Выводит справку по командам.
+ * @author C1ronz
+ */
 public class HelpCommand extends AbstractCommand {
     public final CommandManager commandManager;
 
@@ -13,6 +18,9 @@ public class HelpCommand extends AbstractCommand {
         this.commandManager = commandManager;
     }
 
+    /**
+     * Выполняет команду.
+     */
     @Override
     public void executeInternal(String[] args){
         Console.println("Доступные комманды:");

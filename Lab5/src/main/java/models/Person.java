@@ -7,7 +7,11 @@ import exceptions.WrongArgument;
 
 import java.time.ZonedDateTime;
 
-public class Person {
+/**
+ * Класс человека.
+ * @author C1ronz
+ */
+public class Person implements Comparable<Person> {
     @CsvBindByName(column = "person_name")
     private String name; //Поле не может быть null, Строка не может быть пустой
     @CsvBindByName(column = "person_height")
@@ -44,6 +48,13 @@ public class Person {
 
     public Country getNationality() {return nationality;}
     public void setNationality(Country nationality) {this.nationality = nationality;}
+
+
+    @Override
+    public int compareTo(Person other) {
+        return this.name.compareTo(other.name);
+    }
+
 
     @Override
     public String toString (){

@@ -2,6 +2,10 @@ package models;
 
 import exceptions.ValidationException;
 
+/**
+ * Перечисление цветов.
+ * @author C1ronz
+ */
 public enum Color {
     GREEN,
     BLACK,
@@ -9,6 +13,9 @@ public enum Color {
     ORANGE,
     WHITE;
 
+    /**
+     * @return Строка со всеми цветами через запятую.
+     */
     public static String getValues (){
         Color[] values = values();
         String[] names = new String[values.length];
@@ -18,6 +25,11 @@ public enum Color {
         return String.join(", ", names);
     }
 
+    /**
+     * Парсит цвет.
+     * @param value цвет в виде строки.
+     * @throws ValidationException
+     */
     public static Color parseColor(String value) {
         if (value == null || value.trim().isEmpty()) return null;
         try {

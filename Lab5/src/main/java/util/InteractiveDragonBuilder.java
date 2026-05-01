@@ -5,9 +5,16 @@ import models.*;
 
 import java.time.ZonedDateTime;
 
-
+/**
+ * Класс для генерации дракона из пользовательских аргументов
+ * @author C1ronz
+ */
 public class InteractiveDragonBuilder {
 
+    /**
+     * Парсит строки в boolean.
+     * @throws ValidationException
+     */
     public static boolean parseBoolean (String speaking){
         switch (speaking){
             case "да", "Да", "yes", "Yes": return true;
@@ -16,9 +23,11 @@ public class InteractiveDragonBuilder {
         }
     }
 
-
+    /**
+     * Создаёт дракона.
+     */
     public static Dragon buildDragon (){
-        long id = ConsoleDragonReader.getValidatedInput("Введите id", s -> Long.parseLong(s), Validator::validateId);
+        long id = Dragon.generateId();
         String name = ConsoleDragonReader.getValidatedInput("Введите имя дракона", Validator::validateDragonName);
         Coordinates coordinates = buildCoordinates();
         long age = ConsoleDragonReader.getValidatedInput("Введите возраст дракона", s -> Long.parseLong(s), Validator::validateAge);
@@ -29,12 +38,18 @@ public class InteractiveDragonBuilder {
         return new Dragon(id, name, coordinates, ZonedDateTime.now(), age, speaking,color, character,killer);
     }
 
+    /**
+     * Создаёт координаты.
+     */
     public static Coordinates buildCoordinates (){
         int x = ConsoleDragonReader.getValidatedInput("Введите x", s -> Integer.parseInt(s), Validator::validateX);
         Long y = ConsoleDragonReader.getValidatedInput("Введите y", s -> Long.parseLong(s), Validator::validateY);
         return new Coordinates(x,y);
     }
 
+    /**
+     * Создаёт человека.
+     */
     public static Person buildPerson (){
         String name = ConsoleDragonReader.getValidatedInput("Введите имя убийцы или enter если убийцы нет", Validator::validatePersonName);
         if (name == null || name.isEmpty()){
@@ -46,5 +61,4 @@ public class InteractiveDragonBuilder {
         Country nationality = ConsoleDragonReader.getValidatedInput("Введите страну рождения "+ name + " из " + Country.getValues(), s-> Country.parseCountry(s), Validator::validateNationality);
         return new Person(name, height, eyeColor,hairColor,nationality);
     }
-
 }

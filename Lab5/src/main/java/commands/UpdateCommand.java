@@ -7,6 +7,10 @@ import util.Console;
 import models.Dragon;
 import util.InteractiveDragonBuilder;
 
+/**
+ * Команда "update". Запрашивает у пользователя и обновляет элемент в коллекции по id.
+ * @author C1ronz
+ */
 public class UpdateCommand extends AbstractCommand {
 
     CollectionManager collectionManager;
@@ -18,13 +22,16 @@ public class UpdateCommand extends AbstractCommand {
         this.commandManager = commandManager;
     }
 
+    /**
+     * Выполняет команду.
+     */
     @Override
     public void executeInternal(String[] args) {
         try {
             long id = Long.parseLong(args[0]);
             Dragon dragon = InteractiveDragonBuilder.buildDragon();
             collectionManager.updateByKey(collectionManager.getKeyById(id), dragon);
-            Console.println("Коллекция успешно добавлена");
+            Console.println("Элемент успешно обновлён");
         }
         catch (NumberFormatException e){
             Console.printErr("Команда update принимает в качестве аргумента одно число. Повторите попытку.");

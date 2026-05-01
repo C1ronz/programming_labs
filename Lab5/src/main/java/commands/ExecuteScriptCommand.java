@@ -1,9 +1,14 @@
 package commands;
 
 import exceptions.ScriptRecursionException;
+import exceptions.WrongCommandPattern;
 import util.Console;
 import util.Runner;
 
+/**
+ * Команда "execute_script". Запускает выполнение скрипта из файла.
+ * @author C1ronz
+ */
 public class ExecuteScriptCommand extends AbstractCommand {
 
     Runner runner;
@@ -13,6 +18,9 @@ public class ExecuteScriptCommand extends AbstractCommand {
         this.runner = runner;
     }
 
+    /**
+     * Выполняет команду.
+     */
     @Override
     public void executeInternal(String[] args) {
         try {

@@ -16,6 +16,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 
+/**
+ * Класс дракона.
+ * @author C1ronz
+ */
 public class Dragon implements Comparable<Dragon>{
 
     @CsvBindByName(column = "id")
@@ -55,6 +59,9 @@ public class Dragon implements Comparable<Dragon>{
 
     public Dragon (){}
 
+    /**
+     * @return уникальный id.
+     */
     public static long generateId (){
         while (!isIdUnique(nextId)){
             nextId++;
@@ -62,20 +69,32 @@ public class Dragon implements Comparable<Dragon>{
         return nextId;
     }
 
+    /**
+     * Удаляет id из usedDragonId.
+     */
     public static void removeId (Long id){
         if (!isIdUnique(id)) {
             usedDragonId.remove(id);
         }
     }
 
+    /**
+     * Добавляет id в usedDragonId.
+     */
     public static void addId (Long id){
         usedDragonId.add(id);
     }
 
+    /**
+     * Проверяет уникальность id.
+     */
     public static boolean isIdUnique (long id){
         return !usedDragonId.contains(nextId);
     }
 
+    /**
+     * @return использованные id.
+     */
     public static Set<Long> getUsedDragonId(){
         return usedDragonId;
     }

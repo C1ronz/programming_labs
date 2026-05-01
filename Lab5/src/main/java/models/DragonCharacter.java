@@ -2,13 +2,20 @@ package models;
 
 import exceptions.ValidationException;
 
+
+/**
+ * Перечисление характеров.
+ * @author C1ronz
+ */
 public enum DragonCharacter {
     CUNNING,
     WISE,
     GOOD,
     FICKLE;
 
-
+    /**
+     * @return Строка со всеми характерами через запятую.
+     */
     public static String getValues() {
         DragonCharacter[] values = values();
         String[] names = new String[values.length];
@@ -18,6 +25,11 @@ public enum DragonCharacter {
         return String.join(", ", names);
     }
 
+    /**
+     * Парсит характер.
+     * @param value характер в виде строки.
+     * @throws ValidationException
+     */
     public static DragonCharacter parseCharacter(String value) {
         if (value == null || value.trim().isEmpty()) return null;
         try {

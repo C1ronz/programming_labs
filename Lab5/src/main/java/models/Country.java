@@ -2,11 +2,18 @@ package models;
 
 import exceptions.ValidationException;
 
+/**
+ * Перечисление стран.
+ * @author C1ronz
+ */
 public enum Country {
     ITALY,
     THAILAND,
     SOUTH_KOREA;
 
+    /**
+     * @return Строка со всеми странами через запятую.
+     */
     public static String getValues() {
         Country[] values = values();
         String[] names = new String[values.length];
@@ -16,6 +23,11 @@ public enum Country {
         return String.join(", ", names);
     }
 
+    /**
+     * Парсит страну.
+     * @param value страна в виде строки.
+     * @throws ValidationException
+     */
     public static Country parseCountry(String value) {
         if (value == null || value.trim().isEmpty()) return null;
         try {

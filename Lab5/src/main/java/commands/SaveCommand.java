@@ -3,6 +3,10 @@ package commands;
 import managers.CollectionManager;
 import util.Runner;
 
+/**
+ * Команда "save". Сохраняет коллекцию в файл.
+ * @author C1ronz
+ */
 public class SaveCommand extends AbstractCommand {
 
     CollectionManager collectionManager;
@@ -14,6 +18,9 @@ public class SaveCommand extends AbstractCommand {
         this.runner = runner;
     }
 
+    /**
+     * Выполняет команду.
+     */
     @Override
     public void executeInternal(String[] args){
         collectionManager.saveTo(runner.getFilePath());

@@ -5,6 +5,11 @@ import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
+
+/**
+ * Класс для корректной работы OpenCSV c ZonedDateTime.
+ * @author C1ronz
+ */
 public class ZonedDateTimeConverter extends AbstractBeanField<ZonedDateTime, String> {
 
     private static final DateTimeFormatter FORMATTER =

@@ -2,6 +2,12 @@ package commands;
 
 import exceptions.WrongCommandPattern;
 
+
+/**
+ * Абстрактная команда с именем, описанием и кол-вом принимаемых аргуметов.
+ * Содержит метод для проверки кол-ва переданных аргументов.
+ * @author C1ronz
+ */
 public abstract class AbstractCommand {
 
     protected final String name;
@@ -22,6 +28,11 @@ public abstract class AbstractCommand {
         return description;
     }
 
+
+    /**
+     * Проверяет кол-во переданных аргументов и вызывает уникальнове выполнение для каждой команды.
+     * @throws WrongCommandPattern
+     */
     public void execute(String[] args) throws WrongCommandPattern{
         if (args == null || args.length != numberOfArgs)
         {
@@ -32,5 +43,8 @@ public abstract class AbstractCommand {
 
     };
 
+    /**
+     * Уникальное выполнение команды.
+     */
     protected abstract void executeInternal(String[] args);
 }

@@ -1,8 +1,13 @@
 package commands;
 
+import exceptions.ScriptRecursionException;
 import managers.CommandManager;
 import util.Runner;
 
+/**
+ * Команда "exit. Завершает работу программы.
+ * @author C1ronz
+ */
 public class ExitCommand extends AbstractCommand {
 
     Runner runner;
@@ -12,6 +17,9 @@ public class ExitCommand extends AbstractCommand {
         this.runner = runner;
     }
 
+    /**
+     * Выполняет команду.
+     */
     @Override
     public void executeInternal(String[] args) {
         runner.stop();

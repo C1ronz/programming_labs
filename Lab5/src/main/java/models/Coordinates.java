@@ -2,9 +2,13 @@ package models;
 
 
 import com.opencsv.bean.CsvBindByName;
-import exceptions.WrongArgument;
 
-public class Coordinates {
+
+/**
+ * Класс координат.
+ * @author C1ronz
+ */
+public class Coordinates implements Comparable<Coordinates> {
     @CsvBindByName(column = "x")
     private int x; //Значение поля должно быть больше -600
     @CsvBindByName(column = "y")
@@ -22,6 +26,11 @@ public class Coordinates {
 
     public Long getY() {return y;}
     public void setY(Long y) {this.y = y;}
+
+    @Override
+    public int compareTo(Coordinates other) {
+        return Long.compare(this.x + this.y, other.x + other.y);
+    }
 
     @Override
     public String toString (){

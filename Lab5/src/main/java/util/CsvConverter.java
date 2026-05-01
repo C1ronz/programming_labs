@@ -8,28 +8,35 @@ import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import com.opencsv.enums.CSVReaderNullFieldIndicator;
 import models.Dragon;
 
-import java.io.Console;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
 
+/**
+ * Класс конвертирующий List из драконов в csv строку и обратно.
+ * @author C1ronz
+ */
 public class CsvConverter {
 
+    /**
+     * Конвертирует list в csv строку.
+     */
     public static String objectsToCsvString(List<Dragon> dragons) throws Exception {
         StringWriter stringWriter = new StringWriter();
 
         StatefulBeanToCsv<Dragon> beanToCsv = new StatefulBeanToCsvBuilder<Dragon>(stringWriter)
-                .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)   // можно убрать кавычки
+                .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
                 .withSeparator(',')
-                .withOrderedResults(true)                      // сохранять порядок полей
+                .withOrderedResults(true)
                 .build();
 
         beanToCsv.write(dragons);
         return stringWriter.toString();
     }
 
+    /**
+     * Конвертирует csv строку в list.
+     */
     public static List<Dragon> csvStringToObjects(String csvContent) throws Exception {
         StringReader stringReader = new StringReader(csvContent);
 
@@ -38,9 +45,7 @@ public class CsvConverter {
                 .withSeparator(',')
                 .withIgnoreLeadingWhiteSpace(true)
                 .withIgnoreEmptyLine(true)
-                // Как интерпретировать пустые поля как null:
-                .withFieldAsNull(CSVReaderNullFieldIndicator.EMPTY_SEPARATORS)   // ,,  → null
-                // .withFieldAsNull(CSVReaderNullFieldIndicator.BOTH)           // "" и ,, → null
+                .withFieldAsNull(CSVReaderNullFieldIndicator.EMPTY_SEPARATORS)
                 .build();
 
         return csvToBean.parse();

@@ -2,9 +2,13 @@ package util;
 
 import java.util.Scanner;
 
+/**
+ * Консоль для вывода результата, ввода команд и аргументов.
+ * @author C1ronz
+ */
 public class Console {
 
-    public static final String P1 = "-> ";
+    public static final String PS1 = "-> ";
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void println (String line){
@@ -15,14 +19,25 @@ public class Console {
         System.out.print(text);
     }
 
+    /**
+     * Выводит "Ошибка: переданный текст.
+     */
     public static void printErr (String errorText) {System.out.println("Ошибка: " + errorText);}
 
+    /**
+     * Читает команду и аргументы с ней в одной строке
+     */
     public static String[] readCommand () {
-        Console.print(P1);
+        Console.print(PS1);
         String[] userCommand = (scanner.nextLine().trim() + " ").split(" ");
         return userCommand;
     }
 
+    /**
+     * Запрашивает, получает аргумент от пользователя
+     * @param name запрос к пользователю
+     * @return введёный пользователем аргумент
+     */
     public static String readArgument (String name) {
         Console.print(name + ": ");
         String userArgument = scanner.nextLine().trim();

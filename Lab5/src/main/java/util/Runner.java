@@ -10,6 +10,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс с основными циклами работы программы.
+ * @author C1ronz
+ */
 public class Runner {
 
     private boolean runningStatus;
@@ -29,6 +33,9 @@ public class Runner {
         this.commandManager = commandManager;
     }
 
+    /**
+     * Интерактивный режим.
+     */
     public void runInteractive (){
         runningStatus = true;
         Console.println("Программа запущена в интерактивном режиме, введите help для просмотра команд");
@@ -39,6 +46,9 @@ public class Runner {
         }
     }
 
+    /**
+     * Останавливает работу программы или инерацию скрипта.
+     */
     public void stop (){
         if (scriptStatus == false) {
             runningStatus = false;
@@ -49,6 +59,10 @@ public class Runner {
         }
     }
 
+    /**
+     * Режим для запуска скрипта.
+     * @param filepath путь до скрипта.
+     */
     public void runScript (String filepath){
 
         if (scriptStack.contains(filepath)) {
@@ -68,7 +82,7 @@ public class Runner {
             }
             scriptStack.removeLast();
         } catch (Exception e) {
-            e.printStackTrace();
+            Console.printErr(e.getMessage());
         }
     }
 }

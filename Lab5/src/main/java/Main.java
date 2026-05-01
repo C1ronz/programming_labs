@@ -2,10 +2,13 @@ import commands.*;
 import exceptions.ValidationException;
 import managers.CollectionManager;
 import managers.CommandManager;
+import models.*;
 import util.Console;
 import managers.FileManager;
 import util.Runner;
+import util.Validator;
 
+import java.time.ZonedDateTime;
 import java.util.Scanner;
 
 
@@ -16,24 +19,25 @@ public class Main {
 
         FileManager fileManager = new FileManager();
         CollectionManager collectionManager = new CollectionManager(fileManager);
-        Scanner scanner = new Scanner(System.in);
-        Console console = new Console();
-
         Runner runner = new Runner(filePath);
-
         CommandManager commandManager = new CommandManager();
 
         commandManager.addCommands(
                 new HelpCommand(commandManager),
                 new InfoCommand(collectionManager),
                 new ShowCommand(collectionManager),
-                new InsertCommand(collectionManager,commandManager),
+                new InsertCommand(collectionManager),
                 new RemoveKeyCommand(collectionManager),
                 new ClearCommand(collectionManager),
                 new SaveCommand(collectionManager,runner),
+                new ExecuteScriptCommand(runner),
                 new ExitCommand(runner),
+                new RemoveGreater(collectionManager),
                 new HistoryCommand(commandManager),
-                new ExecuteScriptCommand(runner)
+                new RemoveGreaterKey(collectionManager),
+                new RemoveAnyByCharacter(collectionManager),
+                new GroupCountingByCharacter(collectionManager),
+                new PrintFieldDescendingKiller(collectionManager)
         );
 
         runner.setCommandManager(commandManager);
@@ -42,16 +46,14 @@ public class Main {
             collectionManager.readFrom(filePath);
         }
         catch (ValidationException e){
-            Console.printErr("Ошибка при чтении файла. " + e);
+            Console.printErr("Ошибка при чтении файла. " + e.getMessage());
         }
-
-        Console.println(collectionManager.getDragons().toString());
 
 //        Person killer = new Person("don", 56L, Color.GREEN, Color.BLACK, Country.ITALY);
 //        Coordinates coordinates = new Coordinates(5,12L);
 //        Dragon dragon = new Dragon(5,"vi", coordinates, ZonedDateTime.now(), 56, true, Color.BLACK, DragonCharacter.GOOD, killer);
 //
-//        collectionManager.add(5L, dragon);
+//        collectionManager.add(5L, Validator.validateDragon(dragon));
 
         runner.runInteractive();
 
