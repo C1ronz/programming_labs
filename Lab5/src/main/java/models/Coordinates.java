@@ -1,10 +1,13 @@
 package models;
 
 
+import com.opencsv.bean.CsvBindByName;
 import exceptions.WrongArgument;
 
 public class Coordinates {
+    @CsvBindByName(column = "x")
     private int x; //Значение поля должно быть больше -600
+    @CsvBindByName(column = "y")
     private Long y;//Максимальное значение поля: 885, Поле не может быть null
 
     public Coordinates (int x, Long y) {
@@ -22,7 +25,7 @@ public class Coordinates {
 
     @Override
     public String toString (){
-        return "x:" + x + ", y:" + y.toString();
+        return "x:" + x + ", y:" + y == null ? " " : y.toString();
     }
 
 }

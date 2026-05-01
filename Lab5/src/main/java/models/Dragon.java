@@ -3,33 +3,38 @@ package models;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvCustomBindByName;
+import com.opencsv.bean.CsvRecurse;
 import exceptions.MustNotNullException;
 import exceptions.WrongArgument;
+import util.ZonedDateTimeConverter;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-@JsonPropertyOrder({
-        "id", "name", "x", "y", "creationDate", "age", "speaking",
-        "color", "character",
-        "killer_name", "killer_height", "killer_eyeColor",
-        "killer_hairColor", "killer_nationality"
-})
 
 public class Dragon implements Comparable<Dragon>{
 
+    @CsvBindByName(column = "id")
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    @CsvBindByName(column = "name")
     private String name; //Поле не может быть null, Строка не может быть пустой
+    @CsvRecurse
     private Coordinates coordinates; //Поле не может быть null
-    @JsonFormat(shape = JsonFormat.Shape.STRING,
-            pattern = "yyyy-MM-dd'T'HH:mm:ss.nXXXXX'['VV']'")
+    @CsvCustomBindByName(column = "creationDate", converter = ZonedDateTimeConverter.class)
     private ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    @CsvBindByName(column = "age")
     private long age; //Значение поля должно быть больше 0
+    @CsvBindByName(column = "speaking")
     private boolean speaking;
+    @CsvBindByName(column = "color")
     private Color color; //Поле может быть null
+    @CsvBindByName(column = "character")
     private DragonCharacter character; //Поле может быть null
+    @CsvRecurse
     private Person killer; //Поле может быть null
 
     private static long nextId = 1;
@@ -57,6 +62,16 @@ public class Dragon implements Comparable<Dragon>{
         return nextId;
     }
 
+    public static void removeId (Long id){
+        if (!isIdUnique(id)) {
+            usedDragonId.remove(id);
+        }
+    }
+
+    public static void addId (Long id){
+        usedDragonId.add(id);
+    }
+
     public static boolean isIdUnique (long id){
         return !usedDragonId.contains(nextId);
     }
@@ -65,7 +80,7 @@ public class Dragon implements Comparable<Dragon>{
         return usedDragonId;
     }
 
-    @JsonUnwrapped
+
     public Coordinates getCoordinates() {
         return coordinates;
     }
@@ -74,7 +89,7 @@ public class Dragon implements Comparable<Dragon>{
         this.coordinates = coordinates;
     }
 
-    @JsonUnwrapped(prefix = "killer_")
+
     public Person getKiller() {
         return killer;
     }
@@ -112,9 +127,15 @@ public class Dragon implements Comparable<Dragon>{
 
     @Override
     public String toString (){
-        if (killer == null){
-            return String.format("id:%d, name:%s, coordinates(%s), creationDate:%s, age:%d, speaking:%b, color:%s, character:%s, killer:();", id, name, coordinates.toString(), creationDate.toString(), age, speaking, color.toString(), character.toString());
-        }
-        return String.format("id:%d, name:%s, coordinates(%s), creationDate:%s, age:%d, speaking:%b, color:%s, character:%s, killer(%s);", id, name, coordinates.toString(), creationDate.toString(), age, speaking, color.toString(), character.toString(), killer.toString());
+        return String.format("id:%d, name:%s, coordinates(%s), creationDate:%s, age:%d, speaking:%b, color:%s, character:%s, killer(%s);",
+                id,
+                name == null ? " " : name,
+                coordinates == null ? " " : coordinates.toString(),
+                creationDate == null ? " " : creationDate.toString(),
+                age,
+                speaking,
+                color == null ? " " : color.toString(),
+                character == null ? " " : character.toString(),
+                killer == null ? " " : killer.toString());
     }
 }

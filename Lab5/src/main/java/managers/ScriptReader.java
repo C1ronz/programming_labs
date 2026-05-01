@@ -2,9 +2,8 @@ package managers;
 
 public class ScriptReader {
 
+    public void readLine (){
 
-
-    public void run (){
 
     }
 }

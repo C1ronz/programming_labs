@@ -28,6 +28,12 @@
             <version>2.18.2</version>   <!-- должна совпадать с версией остальных jackson модулей -->
         </dependency>
 
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>5.10</version>   <!-- или новее, например 5.12 -->
+        </dependency>
+
     </dependencies>
 
 </project>

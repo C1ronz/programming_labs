@@ -1,30 +1,30 @@
 package managers;
 
 import exceptions.ElementNotFound;
-import exceptions.WrongArgument;
 import models.*;
+import util.CsvConverter;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.*;
 
 public class CollectionManager {
     private TreeMap <Long, Dragon> dragons = new TreeMap<>();
     private ZonedDateTime inizializeTime;
-    private CsvFileManager csvFileManager;
+    private FileManager fileManager;
     private final String filePath;
 
     private Long nextKey = 1L;
 
-    public CollectionManager (CsvFileManager csvFileManager, String filePath){
+    public CollectionManager (FileManager fileManager, String filePath){
 
-        this.csvFileManager = csvFileManager;
+        this.fileManager = fileManager;
         this.inizializeTime = ZonedDateTime.now();
         this.filePath = filePath;
     }
 
     public void add (Long key, Dragon dragon) {
         dragons.put(key,dragon);
+        Dragon.addId(dragon.getId());
     }
 
     public long generateKey (){
@@ -40,12 +40,12 @@ public class CollectionManager {
 
 
     public void save (){
-        csvFileManager.writeToFile(dragons, filePath);
+        fileManager.writeToFile(dragons,filePath);
     }
 
     public void read (){
-         ArrayList<Dragon> dragonArrayList = csvFileManager.readFromFile(filePath);
-        for (Dragon dragon : dragonArrayList){
+         List<Dragon> dragonList = fileManager.readFromFile(filePath);
+        for (Dragon dragon : dragonList){
             add(generateKey(),dragon);
         }
     }
