@@ -10,6 +10,7 @@ import models.Dragon;
 
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +29,7 @@ public class CsvConverter {
                 .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
                 .withSeparator(',')
                 .withOrderedResults(true)
+                .withThrowExceptions(true)
                 .build();
 
         beanToCsv.write(dragons);
@@ -39,13 +41,13 @@ public class CsvConverter {
      */
     public static List<Dragon> csvStringToObjects(String csvContent) throws Exception {
         StringReader stringReader = new StringReader(csvContent);
-
         CsvToBean<Dragon> csvToBean = new CsvToBeanBuilder<Dragon>(stringReader)
                 .withType(Dragon.class)
                 .withSeparator(',')
                 .withIgnoreLeadingWhiteSpace(true)
                 .withIgnoreEmptyLine(true)
                 .withFieldAsNull(CSVReaderNullFieldIndicator.EMPTY_SEPARATORS)
+                .withThrowExceptions(true)
                 .build();
 
         return csvToBean.parse();

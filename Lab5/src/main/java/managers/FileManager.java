@@ -59,7 +59,7 @@ public class FileManager {
             Console.printErr("Не достаточно прав для доступа к файлу " + fileName);
         }
         catch (Exception e) {
-            Console.printErr("Не удалось конверировать данные");
+            Console.printErr("Не удалось записать данные в файл. Не удалось конверировать данные");
         }
     }
 
@@ -69,11 +69,9 @@ public class FileManager {
      * @param fileName путь к файлу.
      */
     public List<Dragon> readFromFile (String fileName) {
-
-        File csvFile = new File(fileName);
-
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(new FileInputStream(csvFile)))) {
+        try  {
+            File csvFile = new File(fileName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(csvFile)));
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -91,14 +89,16 @@ public class FileManager {
         }
         catch (FileNotFoundException e){
             Console.printErr("Файл " + fileName + " не найден");
+            return new ArrayList<>();
         }
         catch (AccessDeniedException e){
             Console.printErr("Не достаточно прав для доступа к файлу " + fileName);
+            return new ArrayList<>();
         }
         catch (Exception e) {
-            Console.printErr("Не удалось конверировать данные");
+            Console.printErr("Не удалось прочитать файл. Не удалось конверировать данные. " + e.getMessage());
+            return new ArrayList<>();
         }
-        return null;
     }
 
     /**
