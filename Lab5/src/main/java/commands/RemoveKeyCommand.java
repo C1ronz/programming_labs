@@ -10,7 +10,7 @@ import util.Console;
  */
 public class RemoveKeyCommand extends AbstractCommand {
 
-    CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
 
     public RemoveKeyCommand(CollectionManager collectionManager){

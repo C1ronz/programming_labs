@@ -14,7 +14,7 @@ import java.util.TreeMap;
  */
 public class RemoveAnyByCharacter extends AbstractCommand {
 
-    CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public RemoveAnyByCharacter(CollectionManager collectionManager){
         super("remove_any_by_character", "удалить из коллекции все один элементы с заданным характером (формат: команда характер), варианты:" + DragonCharacter.getValues(), 1);

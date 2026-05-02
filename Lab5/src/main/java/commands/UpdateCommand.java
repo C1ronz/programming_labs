@@ -12,7 +12,7 @@ import util.InteractiveDragonBuilder;
  */
 public class UpdateCommand extends AbstractCommand {
 
-    CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public UpdateCommand(CollectionManager collectionManager){
         super("update", "обновить элемент по заданному id (формат: команда id)", 1);

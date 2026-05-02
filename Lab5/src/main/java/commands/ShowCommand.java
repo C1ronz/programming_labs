@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class ShowCommand extends AbstractCommand {
 
-    CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public ShowCommand(CollectionManager collectionManager){
         super("show", "вывести в стандартный поток вывода все элементы коллекции в строковом представлении", 0);

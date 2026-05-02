@@ -12,10 +12,10 @@ import java.util.*;
  */
 public class CommandManager {
 
-    private final int MAX_HISTORY_SIZE = 11;
+    private final int maxHistorySize = 11;
 
     private final Map<String, AbstractCommand> commands = new HashMap<>();
-    private Queue<AbstractCommand> history = new LinkedList<>();
+    private final Queue<AbstractCommand> history = new LinkedList<>();
 
 
     /**
@@ -40,7 +40,7 @@ public class CommandManager {
     public void launchCommand (String[] line) {
         List<String> list = new ArrayList<>(Arrays.asList(line));
         try {
-            AbstractCommand command = this.commands.get(list.remove(0));
+            AbstractCommand command = this.commands.get(list.removeFirst());
             command.execute(list.toArray(new String[0]));
             addCommandToHistory(command);
         }
@@ -56,7 +56,7 @@ public class CommandManager {
      * Добвляет команду в историю.
      */
     private void addCommandToHistory (AbstractCommand command){
-        if (history.size() == MAX_HISTORY_SIZE) {
+        if (history.size() == maxHistorySize) {
             history.poll();
         }
         history.add(command);

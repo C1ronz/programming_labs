@@ -1,16 +1,11 @@
 package models;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
+
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvCustomBindByName;
 import com.opencsv.bean.CsvRecurse;
-import exceptions.MustNotNullException;
-import exceptions.WrongArgument;
 import util.ZonedDateTimeConverter;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -42,7 +37,7 @@ public class Dragon implements Comparable<Dragon>{
     private Person killer; //Поле может быть null
 
     private static long nextId = 1;
-    private static Set<Long> usedDragonId = new HashSet<>();
+    private final static Set<Long> usedDragonId = new HashSet<>();
 
 
     public Dragon (long id, String name, Coordinates coordinates, java.time.ZonedDateTime creationDate, long age, boolean speaking, Color color, DragonCharacter character, Person killer){

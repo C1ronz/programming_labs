@@ -16,7 +16,7 @@ import java.util.TreeMap;
  */
 public class GroupCountingByCharacter extends AbstractCommand {
 
-    CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public GroupCountingByCharacter(CollectionManager collectionManager){
         super("group_counting_by_character", "сгруппировать элементы коллекции по значению поля character, вывести количество элементов в каждой группе", 0);

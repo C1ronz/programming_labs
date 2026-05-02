@@ -9,7 +9,7 @@ import util.Console;
  */
 public class InfoCommand extends AbstractCommand {
 
-    CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public InfoCommand(CollectionManager collectionManager){
         super("info", "вывести информацию о коллекции", 0);

@@ -13,7 +13,7 @@ import java.util.TreeMap;
  */
 public class RemoveGreater extends AbstractCommand {
 
-    CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public RemoveGreater(CollectionManager collectionManager){
         super("remove_greater", "удалить из коллекции все элементы, превышающие заданный", 0);

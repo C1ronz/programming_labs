@@ -13,7 +13,7 @@ public class InteractiveDragonBuilder {
 
     /**
      * Парсит строки в boolean.
-     * @throws ValidationException
+     * @throws ValidationException выбрасывает ошибку если не введен не верный boolean
      */
     public static boolean parseBoolean (String speaking){
         switch (speaking){
@@ -23,12 +23,16 @@ public class InteractiveDragonBuilder {
         }
     }
 
+    public static String parseString (String string){
+        return string.trim();
+    }
+
     /**
      * Создаёт дракона.
      */
     public static Dragon buildDragon (){
         long id = Dragon.generateId();
-        String name = ConsoleDragonReader.getValidatedInput("Введите имя дракона", Validator::validateDragonName);
+        String name = ConsoleDragonReader.getValidatedInput("Введите имя дракона", InteractiveDragonBuilder::parseString, Validator::validateDragonName);
         Coordinates coordinates = buildCoordinates();
         long age = ConsoleDragonReader.getValidatedInput("Введите возраст дракона", Long::parseLong, Validator::validateAge);
         boolean speaking = ConsoleDragonReader.getValidatedInput("Может ли дракон говорить - да/нет", InteractiveDragonBuilder::parseBoolean, Validator::validateSpeaking);
@@ -51,7 +55,7 @@ public class InteractiveDragonBuilder {
      * Создаёт человека.
      */
     public static Person buildPerson (){
-        String name = ConsoleDragonReader.getValidatedInput("Введите имя убийцы или enter если убийцы нет", Validator::validatePersonName);
+        String name = ConsoleDragonReader.getValidatedInput("Введите имя убийцы или enter если убийцы нет", InteractiveDragonBuilder::parseString, Validator::validatePersonName);
         if (name == null || name.isEmpty()){
             return null;
         }

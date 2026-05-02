@@ -28,7 +28,7 @@ public enum DragonCharacter {
     /**
      * Парсит характер.
      * @param value характер в виде строки.
-     * @throws ValidationException
+     * @throws ValidationException выкидывается, если такого цвета нет в enum.
      */
     public static DragonCharacter parseCharacter(String value) {
         if (value == null || value.trim().isEmpty()) return null;

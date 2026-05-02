@@ -50,7 +50,7 @@ public class Main {
 //        Coordinates coordinates = new Coordinates(5,12L);
 //        Dragon dragon = new Dragon(5,"vi", coordinates, ZonedDateTime.now(), 56, true, Color.BLACK, DragonCharacter.GOOD, killer);
 //
-//        collectionManager.add(5L, Validator.validateDragon(dragon));
+//        collectionManager.add(5L, Validator.validateDragon(dragon);
 
         runner.runInteractive();
 

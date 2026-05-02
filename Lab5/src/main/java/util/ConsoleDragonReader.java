@@ -1,9 +1,7 @@
 package util;
 
 import exceptions.ValidationException;
-
 import java.util.function.Function;
-import java.util.function.Consumer;
 
 /**
  * Класс запрашивающий (в том числе повторно) данные для построения dragon.
@@ -19,12 +17,12 @@ public class ConsoleDragonReader {
      * @param validator потребитель для валидации полученного значения
      * @return валидное значение типа T
      */
-    public static <T> T getValidatedInput(String request, Function<String,T> parser, Consumer<T> validator){
+    public static <T> T getValidatedInput(String request, Function<String,T> parser, Function<T,T> validator){
         while (true){
             try {
                 String input = Console.readArgument(request);
                 T value = parser.apply(input);
-                validator.accept(value);
+                validator.apply(value);
                 return value;
             }
             catch (ValidationException e){
@@ -34,13 +32,5 @@ public class ConsoleDragonReader {
                 Console.printErr("Некорректный ввод. Попробуйте снова");
             }
         }
-    }
-
-    /**
-     * Упрощённая версия метода getValidatedInput.
-     * Не требует парсера, использовать для строковых значений.
-     */
-    public static String getValidatedInput(String request, Consumer<String> validator) {
-        return getValidatedInput(request, Function.identity(), validator);
     }
 }

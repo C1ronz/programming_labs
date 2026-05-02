@@ -11,9 +11,9 @@ import java.util.*;
  * @author C1ronz
  */
 public class CollectionManager {
-    private TreeMap <Long, Dragon> dragons = new TreeMap<>();
-    private ZonedDateTime inizializeTime;
-    private FileManager fileManager;
+    private final TreeMap <Long, Dragon> dragons = new TreeMap<>();
+    private final ZonedDateTime inizializeTime;
+    private final FileManager fileManager;
 
     private Long nextKey = 1L;
 
@@ -100,12 +100,14 @@ public class CollectionManager {
      * Удаляет элемент коллекции по ключю.
      */
     public void removeByKey (Long key){
-        try {
-            dragons.remove(key);
+        Dragon dragon = dragons.remove(key);
+        if (dragon != null) {
+            Dragon.removeId(dragon.getId());
         }
-        catch (NullPointerException e) {
+        else {
             throw new ElementNotFound("Элемента с ключом " + key + " нет в коллекции");
         }
+
     }
 
     /**
@@ -126,7 +128,7 @@ public class CollectionManager {
                 "Дата инициализации: " + inizializeTime.toString() + "\n" +
                 "Кол-во элементов: " + dragons.size() + "\n" +
                 "Занятые ключи: " + dragons.keySet() + "\n" +
-                "Занятые id дракона: " + Dragon.getUsedDragonId().toString();
+                "Занятые id дракона: " + Dragon.getUsedDragonId();
     }
 
 }

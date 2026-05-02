@@ -10,7 +10,6 @@ import models.Dragon;
 
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,7 +38,7 @@ public class CsvConverter {
     /**
      * Конвертирует csv строку в list.
      */
-    public static List<Dragon> csvStringToObjects(String csvContent) throws Exception {
+    public static List<Dragon> csvStringToObjects(String csvContent) {
         StringReader stringReader = new StringReader(csvContent);
         CsvToBean<Dragon> csvToBean = new CsvToBeanBuilder<Dragon>(stringReader)
                 .withType(Dragon.class)

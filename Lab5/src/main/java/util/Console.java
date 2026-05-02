@@ -29,8 +29,7 @@ public class Console {
      */
     public static String[] readCommand () {
         Console.print(PS1);
-        String[] userCommand = (scanner.nextLine().trim() + " ").split(" ");
-        return userCommand;
+        return (scanner.nextLine().trim() + " ").split(" ");
     }
 
     /**
@@ -40,7 +39,6 @@ public class Console {
      */
     public static String readArgument (String name) {
         Console.print(name + ": ");
-        String userArgument = scanner.nextLine().trim();
-        return userArgument;
+        return scanner.nextLine().trim();
     }
 }

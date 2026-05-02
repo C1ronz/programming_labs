@@ -26,7 +26,7 @@ public enum Country {
     /**
      * Парсит страну.
      * @param value страна в виде строки.
-     * @throws ValidationException
+     * @throws ValidationException выкидывается, если такой страны нет в enum.
      */
     public static Country parseCountry(String value) {
         if (value == null || value.trim().isEmpty()) return null;

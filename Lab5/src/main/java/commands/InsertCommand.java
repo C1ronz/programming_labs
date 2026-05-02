@@ -11,7 +11,7 @@ import util.InteractiveDragonBuilder;
  */
 public class InsertCommand extends AbstractCommand {
 
-    CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public InsertCommand(CollectionManager collectionManager){
         super("insert", "добавить новый элемент с заданным ключом (формат: команда ключ)", 1);

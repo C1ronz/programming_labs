@@ -10,7 +10,7 @@ import util.Runner;
  */
 public class ExecuteScriptCommand extends AbstractCommand {
 
-    Runner runner;
+    private final Runner runner;
 
     public ExecuteScriptCommand(Runner runner){
         super("execute_script", "запустить выполнение скрипта (формат: команда путь)", 1);

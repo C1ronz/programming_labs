@@ -9,8 +9,8 @@ import util.Runner;
  */
 public class SaveCommand extends AbstractCommand {
 
-    CollectionManager collectionManager;
-    Runner runner;
+    private final CollectionManager collectionManager;
+    private final Runner runner;
 
     public SaveCommand(CollectionManager collectionManager, Runner runner){
         super("save", "сохранить коллекцию в файл", 0);

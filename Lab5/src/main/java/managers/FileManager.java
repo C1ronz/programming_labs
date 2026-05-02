@@ -1,15 +1,9 @@
 package managers;
 
-import com.fasterxml.jackson.databind.MappingIterator;
-import com.fasterxml.jackson.databind.SequenceWriter;
-import com.fasterxml.jackson.dataformat.csv.CsvMapper;
-import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import models.*;
 import util.Console;
 import util.CsvConverter;
 import util.Validator;
-
 import java.io.*;
 import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
@@ -21,20 +15,6 @@ import java.util.TreeMap;
  * @author C1ronz
  */
 public class FileManager {
-
-    private static final CsvMapper mapper = new CsvMapper();
-    private static final CsvSchema schema = mapper.schemaFor(Dragon.class)
-            .withHeader()
-            .withColumnSeparator(',')
-            .withQuoteChar('"')
-            .withEscapeChar('\\');
-
-    static {
-        mapper.registerModule(new JavaTimeModule());
-        mapper.disable(com.fasterxml.jackson.databind.DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
-        mapper.enable(com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_WITH_ZONE_ID);
-    }
-
 
     /**
      * Записывает коллекцию в файл.

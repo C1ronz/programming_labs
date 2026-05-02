@@ -19,7 +19,7 @@ public class ZonedDateTimeConverter extends AbstractBeanField<ZonedDateTime, Str
     protected ZonedDateTime convert(String value)
             throws CsvDataTypeMismatchException {
         try {
-            String cleanValue = value.replaceAll("\\[.*?\\]$", "");
+            String cleanValue = value.replaceAll("\\[.*?]$", "");
             return ZonedDateTime.parse(cleanValue, FORMATTER);
         } catch (Exception e) {
             throw new CsvDataTypeMismatchException(

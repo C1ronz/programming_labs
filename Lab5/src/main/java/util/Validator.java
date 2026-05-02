@@ -109,22 +109,6 @@ public final class Validator {
     }
 
     /**
-     * Валидирует строковое представление характера дракона.
-     *
-     * @param value строковое значение характера
-     * @return соответствующий enum DragonCharacter или null, если значение не указано
-     * @throws ValidationException если значение не соответствует ни одному из допустимых
-     */
-    public static DragonCharacter validateCharacter(String value) {
-        if (value == null || value.trim().isEmpty()) return null;
-        try {
-            return DragonCharacter.valueOf(value.trim().toUpperCase());
-        } catch (IllegalArgumentException e) {
-            throw new ValidationException("Неверное значение character. Возможные: " + DragonCharacter.getValues());
-        }
-    }
-
-    /**
      * Валидирует цвет дракона.
      *
      * @param value проверяемый цвет
@@ -133,6 +117,7 @@ public final class Validator {
     public static Color validateColor(Color value) {
         return value;
     }
+
 
     /**
      * Валидирует характер дракона (объект enum).

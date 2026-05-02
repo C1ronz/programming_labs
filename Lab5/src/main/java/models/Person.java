@@ -58,7 +58,7 @@ public class Person implements Comparable<Person> {
 
     @Override
     public String toString (){
-        return String.format("name:%s, height:%d, eyeColor:%s, hairColor:%s, nationality:%s",
+        return String.format("name:%s, height:%s, eyeColor:%s, hairColor:%s, nationality:%s",
                 name == null ? " " : name,
                 height == null ? " " :  height,
                 eyeColor == null ? " " :  eyeColor.toString(),

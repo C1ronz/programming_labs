@@ -28,7 +28,7 @@ public enum Color {
     /**
      * Парсит цвет.
      * @param value цвет в виде строки.
-     * @throws ValidationException
+     * @throws ValidationException выкидывается, если такого цвета нет в enum.
      */
     public static Color parseColor(String value) {
         if (value == null || value.trim().isEmpty()) return null;

@@ -8,7 +8,7 @@ import util.Runner;
  */
 public class ExitCommand extends AbstractCommand {
 
-    Runner runner;
+    private final Runner runner;
 
     public ExitCommand(Runner runner) {
         super("exit", "завершить программу (без сохранения в файл)", 0);

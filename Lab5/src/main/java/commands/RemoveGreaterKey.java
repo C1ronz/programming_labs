@@ -13,7 +13,7 @@ import java.util.TreeMap;
  */
 public class RemoveGreaterKey extends AbstractCommand {
 
-    CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public RemoveGreaterKey(CollectionManager collectionManager){
         super("remove_greater_key", "удалить из коллекции все элементы, ключ которых превышает заданный (формат: команда ключ)", 1);

@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class PrintFieldDescendingKiller extends AbstractCommand {
 
-    CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public PrintFieldDescendingKiller(CollectionManager collectionManager){
         super("print_field_descending_killer", "вывести значения поля killer всех элементов в порядке убывания", 0);

@@ -10,7 +10,7 @@ import java.util.Queue;
  */
 public class HistoryCommand extends AbstractCommand {
 
-    CommandManager commandManager;
+    private final CommandManager commandManager;
 
     public HistoryCommand(CommandManager commandManager) {
         super("history", "вывести последние 11 команд", 0);

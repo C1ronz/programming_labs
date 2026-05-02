@@ -19,7 +19,7 @@ public class Runner {
     private boolean runningStatus;
     private boolean scriptStatus = false;
     private CommandManager commandManager;
-    private static List<String> scriptStack = new ArrayList<>();
+    private final static List<String> scriptStack = new ArrayList<>();
     private String filePath;
 
     public Runner (String filePath){
@@ -50,7 +50,7 @@ public class Runner {
      * Останавливает работу программы или инерацию скрипта.
      */
     public void stop (){
-        if (scriptStatus == false) {
+        if (!scriptStatus) {
             runningStatus = false;
             Console.println("Работа программы завершена");
         }
@@ -64,6 +64,7 @@ public class Runner {
      * @param filepath путь до скрипта.
      */
     public void runScript (String filepath){
+        scriptStatus = true;
 
         if (scriptStack.contains(filepath)) {
             throw new ScriptRecursionException("Бесконечная рекурсия в скрипте");
@@ -76,7 +77,7 @@ public class Runner {
             File file = new File(filepath);
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             String line;
-            while ((line = reader.readLine()) != null && scriptStack.getLast() == filepath) {
+            while ((line = reader.readLine()) != null && scriptStack.getLast().equals(filepath)) {
                 String[] userCommand = line.trim().split(" ");
                 commandManager.launchCommand(userCommand);
             }
