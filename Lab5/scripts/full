@@ -1,0 +1,18 @@
+help
+info
+show
+group_counting_by_character
+print_field_descending_killer
+remove_key 11
+show
+remove_greater_key 15
+show
+remove_any_by_character GOOD
+show
+group_counting_by_character
+print_field_descending_killer
+history
+info
+show
+save
+exit

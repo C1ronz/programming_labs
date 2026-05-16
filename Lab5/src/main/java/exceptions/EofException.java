@@ -1,7 +1,7 @@
 package exceptions;
 
 public class EofException extends RuntimeException {
-    public EofException() {
-        super("");
+    public EofException(String message) {
+        super(message);
     }
 }

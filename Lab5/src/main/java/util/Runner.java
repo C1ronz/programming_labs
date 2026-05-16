@@ -8,7 +8,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -20,7 +22,7 @@ public class Runner {
     private boolean runningStatus;
     private boolean scriptStatus = false;
     private CommandManager commandManager;
-    private final static List<String> scriptStack = new ArrayList<>();
+    private final static Deque<String> scriptStack = new ArrayDeque<>();
     private String filePath;
 
     public Runner (String filePath){
@@ -55,13 +57,16 @@ public class Runner {
     /**
      * Останавливает работу программы или инерацию скрипта.
      */
-    public void stop (){
+    public void stop() {
         if (!scriptStatus) {
             runningStatus = false;
             Console.println("Работа программы завершена");
-        }
-        else {
-            scriptStack.removeLast();
+        } else {
+            if (!scriptStack.isEmpty()) {
+                scriptStack.removeLast();
+            }
+            scriptStatus = !scriptStack.isEmpty();
+            Console.println("Выход из скрипта");
         }
     }
 
@@ -69,27 +74,43 @@ public class Runner {
      * Режим для запуска скрипта.
      * @param filepath путь до скрипта.
      */
-    public void runScript (String filepath){
+    public void runScript(String filepath) {
         scriptStatus = true;
 
-        if (scriptStack.contains(filepath)) {
+        String fullPath = "scripts/" + filepath;
+
+        if (scriptStack.contains(fullPath)) {
             throw new ScriptRecursionException("Бесконечная рекурсия в скрипте");
         }
-        else {
-            scriptStack.add(filepath);
-        }
+
+        scriptStack.add(fullPath);
 
         try {
-            File file = new File(filepath);
+            File file = new File(fullPath);
+            if (!file.exists()) {
+                Console.printErr("Файл скрипта не найден: " + fullPath);
+                return;
+            }
+
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             String line;
-            while ((line = reader.readLine()) != null && scriptStack.getLast().equals(filepath)) {
-                String[] userCommand = line.trim().split(" ");
+
+            while (scriptStatus && (line = reader.readLine()) != null) {
+                String trimmedLine = line.trim();
+                if (trimmedLine.isEmpty() || trimmedLine.startsWith("#")) {
+                    continue;
+                }
+
+                String[] userCommand = trimmedLine.split("\\s+");
                 commandManager.launchCommand(userCommand);
             }
-            scriptStack.removeLast();
         } catch (Exception e) {
-            Console.printErr(e.getMessage());
+            Console.printErr("Ошибка при выполнении скрипта: " + e.getMessage());
+        } finally {
+            if (!scriptStack.isEmpty()) {
+                scriptStack.removeLast();
+            }
+            scriptStatus = !scriptStack.isEmpty();
         }
     }
 }

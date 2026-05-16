@@ -1,0 +1,21 @@
+info
+show
+remove_key 7
+show
+remove_key 19
+show
+remove_key 999
+show
+save
+history
+info
+show
+remove_greater_key 10
+show
+remove_greater_key 5
+show
+remove_greater_key 1
+show
+save
+exit
+

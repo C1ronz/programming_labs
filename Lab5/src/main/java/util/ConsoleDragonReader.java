@@ -3,7 +3,6 @@ package util;
 import exceptions.EofException;
 import exceptions.ValidationException;
 
-import java.io.EOFException;
 import java.util.function.Function;
 
 /**

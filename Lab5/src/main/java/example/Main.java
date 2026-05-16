@@ -12,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
 
         String filePath = System.getenv("LAB5_PATH");
+        filePath = "files/test.csv";
 
         FileManager fileManager = new FileManager();
         CollectionManager collectionManager = new CollectionManager(fileManager);

@@ -1,0 +1,20 @@
+info
+show
+group_counting_by_character
+remove_any_by_character GOOD
+show
+group_counting_by_character
+remove_any_by_character CUNNING
+show
+group_counting_by_character
+remove_any_by_character FICKLE
+show
+group_counting_by_character
+group_counting_by_character
+info
+show
+print_field_descending_killer
+remove_any_by_character WISE
+print_field_descending_killer
+print_field_descending_killer
+exit

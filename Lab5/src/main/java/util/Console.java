@@ -33,7 +33,7 @@ public class Console {
         if (scanner.hasNextLine()) {
             return (scanner.nextLine().trim() + " ").split(" ");
         }
-        throw new EofException();
+        throw new EofException("");
     }
 
     /**
@@ -46,6 +46,6 @@ public class Console {
         if (scanner.hasNextLine()) {
             return scanner.nextLine().trim();
         }
-        throw new EofException();
+        throw new EofException("");
     }
 }

@@ -47,8 +47,8 @@ public class CommandManager {
         catch (WrongCommandPattern e){
             Console.printErr(e.getMessage());
         }
-        catch (ClassCastException | NullPointerException | IndexOutOfBoundsException e){
-            Console.printErr("Неверный формат команды.");
+        catch (Exception e){
+            Console.printErr("Неверный формат команды: " + ((line.length != 0) ? line[0] : ""));
         }
     }
 
