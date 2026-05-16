@@ -9,7 +9,7 @@ import util.InteractiveDragonBuilder;
  * Команда "insert". Запрашивает у пользователя и добавляет элемент в коллекцию.
  * @author C1ronz
  */
-public class InsertCommand extends AbstractCommand {
+public class InsertCommand extends Command {
 
     private final CollectionManager collectionManager;
 

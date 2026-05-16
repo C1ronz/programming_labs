@@ -33,7 +33,7 @@ public enum Country {
         try {
             return Country.valueOf(value.trim().toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new ValidationException("Неверное значение country. Возможные: " + Color.getValues());
+            throw new ValidationException("Неверное значение country. Возможные: " + Country.getValues());
         }
     }
 }

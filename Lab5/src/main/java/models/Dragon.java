@@ -84,7 +84,7 @@ public class Dragon implements Comparable<Dragon>{
      * Проверяет уникальность id.
      */
     public static boolean isIdUnique (long id){
-        return !usedDragonId.contains(nextId);
+        return !usedDragonId.contains(id);
     }
 
     /**

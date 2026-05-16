@@ -12,7 +12,7 @@ import java.util.TreeMap;
  * Команда "remove_any_by_character". Удалёет первый найденный элемент с совпадающим значением поля character.
  * @author C1ronz
  */
-public class RemoveAnyByCharacter extends AbstractCommand {
+public class RemoveAnyByCharacter extends Command {
 
     private final CollectionManager collectionManager;
 
@@ -27,15 +27,22 @@ public class RemoveAnyByCharacter extends AbstractCommand {
     @Override
     public void executeInternal(String[] args) {
         try {
+            Dragon dragonToRemove = null;
             DragonCharacter character = DragonCharacter.parseCharacter(args[0]);
             TreeMap<Long, Dragon> dragons = collectionManager.getDragons();
             for (Map.Entry<Long, Dragon> entry : dragons.entrySet()) {
                 Dragon dragon = entry.getValue();
                 if (dragon.getCharacter().equals(character)) {
-                    collectionManager.removeByKey(entry.getKey());
-                    Console.println(dragon.getName() + " был удалён из коллекции");
+                    dragonToRemove = dragon;
                     break;
                 }
+            }
+            if (dragonToRemove == null){
+                Console.println("В коллекции нет элемента с заданным характером");
+            }
+            else {
+                collectionManager.removeByKey(collectionManager.getKeyById(dragonToRemove.getId()));
+                Console.println(dragonToRemove.getName() + " был удалён из коллекции");
             }
         }
         catch (ValidationException e){

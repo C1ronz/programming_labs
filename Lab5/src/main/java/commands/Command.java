@@ -8,13 +8,13 @@ import exceptions.WrongCommandPattern;
  * Содержит метод для проверки кол-ва переданных аргументов.
  * @author C1ronz
  */
-public abstract class AbstractCommand {
+public abstract class Command {
 
     protected final String name;
     protected final String description;
     protected final int numberOfArgs;
 
-    public AbstractCommand(String name, String description, int numberOfArgs) {
+    public Command(String name, String description, int numberOfArgs) {
         this.name = name;
         this.description = description;
         this.numberOfArgs = numberOfArgs;

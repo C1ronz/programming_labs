@@ -7,7 +7,7 @@ import util.Runner;
  * Команда "save". Сохраняет коллекцию в файл.
  * @author C1ronz
  */
-public class SaveCommand extends AbstractCommand {
+public class SaveCommand extends Command {
 
     private final CollectionManager collectionManager;
     private final Runner runner;

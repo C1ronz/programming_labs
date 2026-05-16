@@ -6,7 +6,7 @@ import util.Runner;
  * Команда "exit. Завершает работу программы.
  * @author C1ronz
  */
-public class ExitCommand extends AbstractCommand {
+public class ExitCommand extends Command {
 
     private final Runner runner;
 

@@ -8,7 +8,7 @@ import util.Runner;
  * Команда "execute_script". Запускает выполнение скрипта из файла.
  * @author C1ronz
  */
-public class ExecuteScriptCommand extends AbstractCommand {
+public class ExecuteScriptCommand extends Command {
 
     private final Runner runner;
 

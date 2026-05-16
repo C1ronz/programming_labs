@@ -1,5 +1,6 @@
 package util;
 
+import exceptions.EofException;
 import java.util.Scanner;
 
 /**
@@ -29,7 +30,10 @@ public class Console {
      */
     public static String[] readCommand () {
         Console.print(PS1);
-        return (scanner.nextLine().trim() + " ").split(" ");
+        if (scanner.hasNextLine()) {
+            return (scanner.nextLine().trim() + " ").split(" ");
+        }
+        throw new EofException();
     }
 
     /**
@@ -39,6 +43,9 @@ public class Console {
      */
     public static String readArgument (String name) {
         Console.print(name + ": ");
-        return scanner.nextLine().trim();
+        if (scanner.hasNextLine()) {
+            return scanner.nextLine().trim();
+        }
+        throw new EofException();
     }
 }

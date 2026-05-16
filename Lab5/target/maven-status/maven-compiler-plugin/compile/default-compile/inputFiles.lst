@@ -17,6 +17,7 @@ C:\Users\User\Desktop\prog_labs\programming_labs\Lab5\src\main\java\commands\Sho
 C:\Users\User\Desktop\prog_labs\programming_labs\Lab5\src\main\java\commands\UpdateCommand.java
 C:\Users\User\Desktop\prog_labs\programming_labs\Lab5\src\main\java\example\Main.java
 C:\Users\User\Desktop\prog_labs\programming_labs\Lab5\src\main\java\exceptions\ElementNotFound.java
+C:\Users\User\Desktop\prog_labs\programming_labs\Lab5\src\main\java\exceptions\EofException.java
 C:\Users\User\Desktop\prog_labs\programming_labs\Lab5\src\main\java\exceptions\MustNotNullException.java
 C:\Users\User\Desktop\prog_labs\programming_labs\Lab5\src\main\java\exceptions\ScriptRecursionException.java
 C:\Users\User\Desktop\prog_labs\programming_labs\Lab5\src\main\java\exceptions\ValidationException.java

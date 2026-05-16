@@ -7,7 +7,7 @@ import util.Console;
  * Команда "info". Выводит информацию о коллекции.
  * @author C1ronz
  */
-public class InfoCommand extends AbstractCommand {
+public class InfoCommand extends Command {
 
     private final CollectionManager collectionManager;
 

@@ -54,7 +54,7 @@ public class CollectionManager {
      * Сохраняет коллекцию в файл
      */
     public void saveTo(String filePath){
-        fileManager.writeToFile(dragons,filePath);
+        fileManager.writeCollection(dragons,filePath);
     }
 
     /**
@@ -62,9 +62,13 @@ public class CollectionManager {
      * Читает коллекцию из файла
      */
     public void readFrom(String filePath){
-         List<Dragon> dragonList = fileManager.readFromFile(filePath);
+         List<Dragon> dragonList = fileManager.readCollection(filePath);
         for (Dragon dragon : dragonList){
             add(generateKey(),dragon);
+        }
+
+        if (!dragons.isEmpty()) {
+            nextKey = dragons.lastKey() + 1;
         }
     }
 

@@ -1,6 +1,7 @@
 commands\ShowCommand.class
 managers\CommandManager.class
 util\CsvConverter.class
+exceptions\EofException.class
 exceptions\MustNotNullException.class
 commands\ExecuteScriptCommand.class
 util\InteractiveDragonBuilder.class

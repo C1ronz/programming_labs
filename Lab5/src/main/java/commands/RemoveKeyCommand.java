@@ -8,7 +8,7 @@ import util.Console;
  * Команда "remove_key". Удалёет элемент коллекции по ключю.
  * @author C1ronz
  */
-public class RemoveKeyCommand extends AbstractCommand {
+public class RemoveKeyCommand extends Command {
 
     private final CollectionManager collectionManager;
 

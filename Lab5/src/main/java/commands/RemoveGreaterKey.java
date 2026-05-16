@@ -4,6 +4,8 @@ import managers.CollectionManager;
 import util.Console;
 import models.Dragon;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -11,7 +13,7 @@ import java.util.TreeMap;
  * Команда "remove_greater_key". Удалёет все элементы коллекции, ключ которых превышает заданный.
  * @author C1ronz
  */
-public class RemoveGreaterKey extends AbstractCommand {
+public class RemoveGreaterKey extends Command {
 
     private final CollectionManager collectionManager;
 
@@ -26,14 +28,19 @@ public class RemoveGreaterKey extends AbstractCommand {
     @Override
     public void executeInternal(String[] args) {
         try {
-            Long key = Long.valueOf(args[0]);
+            Long ArgKey = Long.valueOf(args[0]);
             int count = 0;
             TreeMap<Long,Dragon> dragons = collectionManager.getDragons();
+            List<Long> keysToRemove = new ArrayList<>();
             for (Map.Entry<Long,Dragon> entry : dragons.entrySet()) {
-                if (entry.getKey() > key) {
-                    collectionManager.removeByKey(entry.getKey());
-                    count += 1;
+                if (entry.getKey() > ArgKey) {
+                    keysToRemove.add(entry.getKey());
                 }
+            }
+
+            for (Long key : keysToRemove){
+                collectionManager.removeByKey(key);
+                count += 1;
             }
             Console.println("Удалено " + count + " элементов.");
         }

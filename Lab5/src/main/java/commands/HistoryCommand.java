@@ -8,7 +8,7 @@ import java.util.Queue;
  * Команда "history". Выводит историю команд
  * @author C1ronz
  */
-public class HistoryCommand extends AbstractCommand {
+public class HistoryCommand extends Command {
 
     private final CommandManager commandManager;
 
@@ -22,12 +22,12 @@ public class HistoryCommand extends AbstractCommand {
      */
     @Override
     public void executeInternal(String[] args) {
-        Queue<AbstractCommand> history = commandManager.getHistory();
+        Queue<Command> history = commandManager.getHistory();
         if (history.isEmpty()){
             Console.println("История пуста.");
         }
         else {
-            for (AbstractCommand command : history){
+            for (Command command : history){
                 Console.println(command.getName());
             }
         }

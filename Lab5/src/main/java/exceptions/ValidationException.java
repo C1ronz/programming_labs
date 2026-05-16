@@ -6,6 +6,6 @@ package exceptions;
  */
 public class ValidationException extends RuntimeException {
     public ValidationException(String message) {
-        super("Значение не прошло валидацию" + message);
+        super("Значение не прошло валидацию. " + message);
     }
 }

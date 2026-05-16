@@ -1,6 +1,6 @@
 package managers;
 
-import commands.AbstractCommand;
+import commands.Command;
 import exceptions.WrongCommandPattern;
 import util.Console;
 
@@ -14,15 +14,15 @@ public class CommandManager {
 
     private final int maxHistorySize = 11;
 
-    private final Map<String, AbstractCommand> commands = new HashMap<>();
-    private final Queue<AbstractCommand> history = new LinkedList<>();
+    private final Map<String, Command> commands = new HashMap<>();
+    private final Queue<Command> history = new LinkedList<>();
 
 
     /**
      * Добвляет команды.
      */
-    public void addCommands (AbstractCommand... commands){
-        for (AbstractCommand command : commands){
+    public void addCommands (Command... commands){
+        for (Command command : commands){
             this.commands.put(command.getName(), command);
         }
     }
@@ -30,7 +30,7 @@ public class CommandManager {
     /**
      * @return Словарь команд.
      */
-    public Map<String, AbstractCommand> getCommands (){
+    public Map<String, Command> getCommands (){
         return commands;
     }
 
@@ -38,9 +38,9 @@ public class CommandManager {
      * Вызывает выполнение команды и передает ей аргументы.
      */
     public void launchCommand (String[] line) {
-        List<String> list = new ArrayList<>(Arrays.asList(line));
         try {
-            AbstractCommand command = this.commands.get(list.removeFirst());
+            List<String> list = new ArrayList<>(Arrays.asList(line));
+            Command command = this.commands.get(list.removeFirst());
             command.execute(list.toArray(new String[0]));
             addCommandToHistory(command);
         }
@@ -48,14 +48,14 @@ public class CommandManager {
             Console.printErr(e.getMessage());
         }
         catch (ClassCastException | NullPointerException | IndexOutOfBoundsException e){
-            Console.printErr("Ошибка: неверный формат команды");
+            Console.printErr("Неверный формат команды.");
         }
     }
 
     /**
      * Добвляет команду в историю.
      */
-    private void addCommandToHistory (AbstractCommand command){
+    private void addCommandToHistory (Command command){
         if (history.size() == maxHistorySize) {
             history.poll();
         }
@@ -64,7 +64,7 @@ public class CommandManager {
     /**
      * @return История команд.
      */
-    public Queue<AbstractCommand> getHistory (){
+    public Queue<Command> getHistory (){
         return history;
     }
 

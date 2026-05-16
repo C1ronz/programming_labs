@@ -10,7 +10,7 @@ import java.util.*;
  * Команда "print_field_descending_killer". Выводит в порядке убывания значения поля killer для всех элементов.
  * @author C1ronz
  */
-public class PrintFieldDescendingKiller extends AbstractCommand {
+public class PrintFieldDescendingKiller extends Command {
 
     private final CollectionManager collectionManager;
 

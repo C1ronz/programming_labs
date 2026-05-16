@@ -1,5 +1,6 @@
 package util;
 
+import exceptions.EofException;
 import exceptions.ScriptRecursionException;
 import managers.CommandManager;
 
@@ -41,8 +42,13 @@ public class Runner {
         Console.println("Программа запущена в интерактивном режиме, введите help для просмотра команд");
 
         while (runningStatus) {
-            String[] userCommand = Console.readCommand();
-            commandManager.launchCommand(userCommand);
+            try {
+                String[] userCommand = Console.readCommand();
+                commandManager.launchCommand(userCommand);
+            }
+            catch (EofException e){
+                stop();
+            }
         }
     }
 

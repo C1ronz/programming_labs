@@ -10,7 +10,7 @@ import util.InteractiveDragonBuilder;
  * Команда "update". Запрашивает у пользователя и обновляет элемент в коллекции по id.
  * @author C1ronz
  */
-public class UpdateCommand extends AbstractCommand {
+public class UpdateCommand extends Command {
 
     private final CollectionManager collectionManager;
 

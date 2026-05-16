@@ -3,7 +3,7 @@ package managers;
 import models.*;
 import util.Console;
 import util.CsvConverter;
-import util.Validator;
+import util.validation.Validator;
 import java.io.*;
 import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
@@ -14,14 +14,15 @@ import java.util.TreeMap;
  * Работает с csv файлами
  * @author C1ronz
  */
-public class FileManager {
+public class FileManager implements Storage {
 
     /**
      * Записывает коллекцию в файл.
      * @param dragons коллекция.
      * @param fileName путь к файлу.
      */
-    public void writeToFile (TreeMap<Long, Dragon> dragons, String fileName) {
+    @Override
+    public void writeCollection(TreeMap<Long, Dragon> dragons, String fileName) {
 
         List<Dragon> list = new ArrayList<>(dragons.values());
         try {
@@ -48,7 +49,8 @@ public class FileManager {
      * @return list, содержащий элементы коллекции
      * @param fileName путь к файлу.
      */
-    public List<Dragon> readFromFile (String fileName) {
+    @Override
+    public List<Dragon> readCollection(String fileName) {
         try  {
             File csvFile = new File(fileName);
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(csvFile)));

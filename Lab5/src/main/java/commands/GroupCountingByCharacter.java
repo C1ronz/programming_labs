@@ -14,7 +14,7 @@ import java.util.TreeMap;
  * Команда "group_counting_by_character". Группирует элементы коллекции по значению поля character.
  * @author C1ronz
  */
-public class GroupCountingByCharacter extends AbstractCommand {
+public class GroupCountingByCharacter extends Command {
 
     private final CollectionManager collectionManager;
 

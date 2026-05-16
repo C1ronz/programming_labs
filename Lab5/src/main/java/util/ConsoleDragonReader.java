@@ -1,6 +1,9 @@
 package util;
 
+import exceptions.EofException;
 import exceptions.ValidationException;
+
+import java.io.EOFException;
 import java.util.function.Function;
 
 /**
@@ -17,16 +20,18 @@ public class ConsoleDragonReader {
      * @param validator потребитель для валидации полученного значения
      * @return валидное значение типа T
      */
-    public static <T> T getValidatedInput(String request, Function<String,T> parser, Function<T,T> validator){
+    public static <T> T getValidatedInput(String request, Function<String,T> parser, Function<T,T> validator) {
         while (true){
             try {
                 String input = Console.readArgument(request);
                 T value = parser.apply(input);
-                validator.apply(value);
-                return value;
+                return validator.apply(value);
+            }
+            catch (EofException e){
+                return null;
             }
             catch (ValidationException e){
-                Console.printErr(e.getMessage() + "Попробуйте снова.");
+                Console.printErr(e.getMessage() + " Попробуйте снова.");
             }
             catch (Exception e){
                 Console.printErr("Некорректный ввод. Попробуйте снова");

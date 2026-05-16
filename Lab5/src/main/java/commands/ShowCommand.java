@@ -10,7 +10,7 @@ import java.util.Map;
  * Команда "show". Выводит все элементы коллекции в строковом представлении.
  * @author C1ronz
  */
-public class ShowCommand extends AbstractCommand {
+public class ShowCommand extends Command {
 
     private final CollectionManager collectionManager;
 

@@ -2,7 +2,6 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.opencsv.bean.CsvBindByName;
-import exceptions.MustNotNullException;
 import exceptions.WrongArgument;
 
 import java.time.ZonedDateTime;

@@ -6,7 +6,7 @@ import managers.CollectionManager;
  * Команда "clean". Удалёет все элементы коллекции.
  * @author C1ronz
  */
-public class ClearCommand extends AbstractCommand {
+public class ClearCommand extends Command {
 
     private final CollectionManager collectionManager;
 
